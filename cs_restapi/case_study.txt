@@ -1,0 +1,17 @@
+import { title } from "process"
+
+Create a node application for creating Rest Api's for Product Model having following structure
+Product{
+    'title':String,'price':Number,'category':String,'shortDesc':String
+    }
+
+Create a schema for creating the above structured collection in mongodb
+
+Create the  following api's and test them in postman
+
+1. save the product in DB
+2. get all products
+3. get product by title
+4.find all product by category
+5.delete product by id
+6.update product title and price

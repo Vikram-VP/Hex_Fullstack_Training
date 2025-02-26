@@ -1,0 +1,85 @@
+Steps 1: Navigate to the directory and install the required libraries and dependencies
+npm init
+npm install express
+npm install body-parser
+npm install mongoose
+npm install nodemon
+
+Step 2:
+add start and dev under scripts to the package.json
+like:
+    "start":node index.json,
+    "dev": "nodemon index.js"
+
+Step 3:
+Create a new file called index.js 
+
+Step 4: create the dbconfig.js
+ In dbconfig
+
+ import the mongoose to a variable
+
+ create a async function named dbConnect where you connect to the mongodb server
+ then export the function dbConnect
+
+ Step 5:
+ create the folders like models,routes,controllers
+
+ Step 6:
+ Create product.js under the model folder. this is to create the schema for the table.
+You will import mongoose here and define the schema of the table.
+Then export the model
+
+Step 7:
+import the express,dbconnect to the index.js
+define the main server variale app using express()
+
+then to read the json use the body parser
+app.use(express.json());
+
+connect to the db using dbConnect
+
+define the port
+using process.env.PORT || some default port
+then we have to make the app listen to the port
+app.listen(port, () => { mention some content to display})
+
+Step 8: define the function or rest api in the controller by creating a productcontroller.js
+
+we have to export the model here for performing the operations to the table.
+then define the rest apis using the exports
+
+ex:
+exports.addProduct
+
+this is created similar to the arrow function
+
+Step 9:
+create the routes.js
+import the express
+import the functions to the routes
+
+call the constructer of the express router
+
+const router = express.Router();
+
+then define the routes
+ex:
+router.get('/products',getProducts);
+
+export the router
+
+Step 10:
+import the router to the index.js
+app.use('/api',router);
+this is to reach out to the routes
+
+Step 11:
+
+the setup is over you can create or modify the actual api functions in controller
+
+Step 12: get the APi requests sent from the postman 
+
+Step 13:
+ 
+ Check if the values are reflecting in the mongo db

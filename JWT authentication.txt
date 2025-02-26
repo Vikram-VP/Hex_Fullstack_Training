@@ -1,0 +1,64 @@
+Authentication is required to access this resource. Please provide a valid authentication token in the `Authorization` header.
+
+token-->  random - hexa decimal(0-9 a-f A-F)
+
+simple stry:
+
+a person with token in approved to access the api 
+a person without token is not approved to access the api
+
+How do we decide to give the token?
+
+we provide token to everyone who provides the username and password!
+
+
+when we have the username and passs we generate the token
+
+we get the token only when we log in not when we sign up
+
+even after we login he cannot acces withhout permission.
+
+username/pass----->login-----> token
+
+token--------> username
+
+stry -2
+
+there is a lab
+total of 1000 students
+only 50 has enrolled for the lab
+the teacher is assigned for the lab
+the one with the token is allowed by the teacher but the teacher will see if he has enrolled.
+if he has enrolled he will be allowed to enter the lab
+else he will be redirected to another teacher where he can enroll to the lab or course
+then once he is enrolled 
+he again tries to enter the lab
+the teacher again checks if he has enrolled
+as he is enrolled he is allowed
+
+
+the encoded data changes according to the payload data!
+
+there is some libraries in node which is used to generate the encoded data which is used in the enterprises
+
+
+the token has expiry
+
+
+
+JWT security Config
+
+- his doc assumes that u have creted fw apis and that your application works without any errors at this point
+
+Steps for security Config
+
+Step1: Install libraries
+
+-bcrypt.js: generates hashcode of passwords.We do not save password in DB in plain text.we encrypt it as save encrypttext(cipher text)
+
+- jsonwebtoken:- JWT this helps us to create a hexa decimal token for api call
+
+- express-validator:- 
+
+to install :
+npm i bcryptjs jsonwebtoken express-validator

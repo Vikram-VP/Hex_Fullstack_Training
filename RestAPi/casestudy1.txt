@@ -1,0 +1,23 @@
+Instructor Structure
+
+--------------------
+name:String
+age:Number
+email:String
+city:String
+
+
+course                              Instructor
+                Teachs
+                course:
+                Instructor:
+
+
+Write codes to create the following APis
+
+1.Post Instructor
+2.Get all instructors
+3.Assign course to Instructor: assign(enroll)
+4.Un Assign course to Instructor: un assign(un enroll)
+5.Fetch all Instructors by courseId
+6.Fetch all courses by instructorId
