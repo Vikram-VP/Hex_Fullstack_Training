@@ -1,4 +1,4 @@
-const jwt=require('jwtwebtoken');
+const jwt=require('jsonwebtoken');
 
 const auth=(req,res,callback)=>{
 
@@ -11,7 +11,7 @@ const auth=(req,res,callback)=>{
         return res.status(400).json({msg:"No token passed"})
     }
     // split the token from bearer keyword
-    let actualToken=token.split(' ');
+    let actualToken=token.split(' ')[1];
 
     const SECRET_KEY='15111983200722';
     let obj=jwt.verify(actualToken,SECRET_KEY);

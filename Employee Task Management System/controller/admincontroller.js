@@ -1,6 +1,6 @@
 const jwt=require('jsonwebtoken');
 const bcrypt=require('bcryptjs');
-const Admin=require('../models/admin');
+const Admin=require('../model/admin');
 
 exports.addAdmin=async(req,res)=>{
     let{username,password}=req.body;
@@ -47,5 +47,7 @@ exports.login=async(req,res)=>{
         let adminObj={
             username:admin.username
         }
-        let token=
+        let token= await jwt.sign(adminObj,SECRET_KEY,{'expiresIn':'20h'});
+        res.json({'token':token})
+
     }

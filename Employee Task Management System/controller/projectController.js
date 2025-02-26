@@ -20,6 +20,32 @@ exports.addProject=async (req,res)=>{
 }
 
 exports.getAllProject = async (req,res)=>{
-    const projects = await Project.find();
-    res.json(projects);
+    let {page,size}=req.query;
+    page=parseInt(page) || 1;
+    size=parseInt(size) || 2;
+
+    //console.log(page+ "----" +size)
+    /**
+     * 
+     * size=2
+     * Algorithm
+     * when page==1 then the skip =0  [1,2]
+     * when page ==2 then the skip = 2 [3,4]
+     * when page==3 then the skip = 4 [5,6]
+     * 
+     */
+
+    let skip=(page-1)*size;
+
+    const projects = await Project.find().skip(skip).limit(size);
+    let totalRecords=await Project.countDocuments();
+    let totalPages= Math.ceil(totalRecords/size);
+
+
+    res.json({
+        'totalRecords':totalRecords,
+        'totalPages':totalPages,
+        'currentPage':page,
+        'data':projects
+    });
 }

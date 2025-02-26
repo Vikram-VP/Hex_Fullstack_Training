@@ -6,5 +6,5 @@ const adminSchema=new mongoose.Schema({
     role:{type:String,default:'ROLE_ADMIN'}
 });
 
-const Admin=mongoose.model("Admin",userSchema);
+const Admin=mongoose.model("Admin",adminSchema);
 module.exports=Admin;

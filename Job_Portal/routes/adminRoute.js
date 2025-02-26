@@ -1,9 +1,10 @@
 const express=require('express');
-const { createJob, getAllJobs } = require('../controllers/admincontroller');
+const { addAdmin,login } = require('../controllers/admincontroller');
+
 
 const router=express.Router();
 
-router.post('/createjob',createJob);
-router.get('getAllJobs',getAllJobs);
+router.post("/add", addAdmin);
+router.get('/login',login);
 
 module.exports=router;
