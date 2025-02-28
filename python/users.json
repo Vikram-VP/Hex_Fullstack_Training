@@ -1,0 +1,12 @@
+[
+    {
+        "name": "harry potter",
+        "username": "harry@gmail.com",
+        "password": "harry@123"
+    },
+    {
+        "name": "ronald weasley",
+        "username": "ronald@gmail.com",
+        "password": "ronald@123"
+    }
+]
