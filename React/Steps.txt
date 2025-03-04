@@ -1,0 +1,32 @@
+1. create an app using following utilites
+    a. create-react-app
+    b.vite ***
+
+now we are using vite :
+npm create vite@latest name
+
+the react folder and files would have been created 
+check out the package.json 
+
+some dependencies would have been shown but we have to install them so 
+
+use 
+
+npm install
+
+index.html
+
+<div id="root"></div>  <-- index tell react, pls load the root component
+
+the control from here goes to src/main.jsx
+
+createRoot(document.getElementById('root')).render(
+  <StrictMode>
+    <App />
+  </StrictMode>,
+) 
+
+this is telling react, please load the <App/> component in place of <div id='root'> </div>
+
+
+
