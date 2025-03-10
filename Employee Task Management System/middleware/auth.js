@@ -1,27 +1,34 @@
-const jwt=require('jsonwebtoken');
+const jwt = require("jsonwebtoken");
 
-const auth=(req,res,callback)=>{
+const auth = async (req, res, next) => {
+    try {
+        const token = req.header("Authorization");
+        
+        if (!token) {
+            return res.status(400).json({ message: "Token required" });
+        }
 
-    // i am reading the token from theh authorization header which wwill be passed by the postman
-        try{
-    // Bearer token
-    let token=req.headers('Authorization');
+        const secretKey = "15111983200722";
+        const actualToken = token.split(" ")[1];
 
-    if(!token){
-        return res.status(400).json({msg:"No token passed"})
+        if (!actualToken) {
+            return res.status(400).json({ message: "Invalid token format" });
+        }
+
+        const result = jwt.verify(actualToken, secretKey);
+
+        if (!result) {
+            return res.status(400).json({ message: "Invalid token" });
+        }
+
+        req.user = result; // store decoded token data
+        next(); // proceed to the next middleware
+    } catch (e) {
+        console.error("Auth error:", e.message);
+        res.status(500).json({ message: "Authentication failed" });
     }
-    // split the token from bearer keyword
-    let actualToken=token.split(' ')[1];
+};
 
-    const SECRET_KEY='15111983200722';
-    let obj=jwt.verify(actualToken,SECRET_KEY);
+module.exports = auth;
 
-    req.user=obj;// this will now be tranfered to the api where i use auth
-    callback();
-}
-catch(err){
-    return res.status(400).json({msg:"ERROR IN AUTH"})
-}
-}
-
-module.exports=auth;
+//15111983200722

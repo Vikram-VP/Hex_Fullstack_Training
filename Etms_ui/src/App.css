@@ -1,10 +1,8 @@
 #root {
-  max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  padding: 0 rem;
 }
-
+ 
 .logo {
   height: 6em;
   padding: 1.5em;
@@ -16,6 +14,16 @@
 }
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+.circular_image {
+  width: 40px;
+  height: 40px;
+  border-radius:50%;
+  overflow: hidden;
+  }
+.circular_image img{
+   width: 100%;
 }
 
 @keyframes logo-spin {

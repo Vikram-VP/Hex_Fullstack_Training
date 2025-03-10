@@ -1,10 +1,13 @@
 const Project = require("../model/project");
 const Task = require("../model/task");
+const mongoose=require('mongoose');
 
 exports.addTask=async (req,res)=>{
     const pid = req.params.pid; 
     let {title, shortDescription, estimatedEndDate} = req.body; 
-
+    if (!mongoose.Types.ObjectId.isValid(pid)) {
+        return res.status(400).json({ msg: "Invalid project ID format." });
+    }
     //validate this pid 
     let project = await Project.findById(pid); 
     if(!project)
