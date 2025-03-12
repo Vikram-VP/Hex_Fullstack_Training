@@ -31,11 +31,11 @@ exports.login = async (req, res) => {
     
     const SECRET_KEY = "15111983200722";
     let employeeObj = {
-      username: employee.username,
+      username: user.username,
     };
 
     const token = jwt.sign(employeeObj, SECRET_KEY, { expiresIn: "1h" });
-    return res.json({ token: token, role: employee.role });
+    return res.json({ token: token, role: user.role });
   }
 
   return res.status(400).json({ msg: "Invalid Credentials!!!!" });

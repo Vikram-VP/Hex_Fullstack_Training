@@ -4,12 +4,12 @@ function AdminNavbar() {
   return (
     <nav
       className="navbar navbar-expand-lg"
-      style={{ backgroundColor: "#ffff" }} // Light Grey Background
+      style={{ backgroundColor: "#ffff" }} 
     >
       <div className="container">
         {/* Brand Name */}
-        <NavLink className="navbar-brand fw-bold" to="/admin/dashboard" style={{ color: "#000000"}}>
-          Admin Panel
+        <NavLink className="navbar-brand fw-bold" to="/" style={{ color: "#000000"}}>
+          User Panel
         </NavLink>
 
         {/* Toggle Button */}
@@ -29,32 +29,33 @@ function AdminNavbar() {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav me-auto">
             <li className="nav-item ">
-              <NavLink className="nav-link text-dark" to="/admin/dashboard">
+              <NavLink className="nav-link text-dark" to="/dashboard">
                 Dashboard
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link text-dark" to="/admin/add-user">
-                Add User
+              <NavLink className="nav-link text-dark" to="/employee-onboarding">
+                AddUser
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link text-dark" to="/admin/users">
-                All Users
+              <NavLink className="nav-link text-dark" to="/employees">
+                All User
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link text-dark" to="/admin/add-job">
-                Add Job
+              <NavLink className="nav-link text-dark" to="/add-job">
+                AddJob
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link text-dark" to="/admin/jobs">
-                All Jobs
+              <NavLink className="nav-link text-dark" to="/all-jobs">
+                AllJob
               </NavLink>
             </li>
           </ul>
 
+          {/* User Dropdown */}
           <ul className="navbar-nav ms-auto">
             <li className="nav-item dropdown">
               <button
@@ -67,7 +68,7 @@ function AdminNavbar() {
               </button>
               <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
                 <li>
-                  <NavLink className="dropdown-item text-dark" to="/admin/logout">
+                  <NavLink className="dropdown-item text-dark" to="/logout">
                     Logout
                   </NavLink>
                 </li>

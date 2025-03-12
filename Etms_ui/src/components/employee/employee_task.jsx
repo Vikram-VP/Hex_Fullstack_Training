@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import EmployeeNavbar from "./navbar";
 import axios from "axios";
+import { useNavigate } from "react-router";
 
 function EmployeeTask() {
   const [tasks, setTasks] = useState([]);  
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchTasks = async () => {
@@ -16,7 +18,6 @@ function EmployeeTask() {
           { headers }
         );
         setTasks(response.data);
-        
       } catch (err) {
         console.log(err);
       }
@@ -38,14 +39,20 @@ function EmployeeTask() {
               <div className="card">
                 <div className="card-header">Start Date: {task.startDate}</div>
                 <div className="card-body">
-                  Title: {task.title}
+                  <strong>Title:</strong> {task.title}
                   <br />
-                  Project Name: {task.project?.title} 
+                  <strong>Project Name:</strong> {task.project?.title} 
                   <br />
                   {task.shortDescription}
                   <br />
                   <br />
-                  <button className="btn btn-info"> View Full Details</button>
+                  
+                  <button 
+                    className="btn btn-info" 
+                    onClick={() => navigate(`/employee/task/${task._id}`)}
+                  >
+                    View Full Details
+                  </button>
                 </div>
                 <div className="card-footer">Estimated End Date: {task.estimatedEndDate}</div>
               </div>
