@@ -149,3 +149,28 @@ exports.emp=async(req,res)=>{
         return res.status(400).json(err);
       }
 }
+
+exports.deleteEmployee = async (req, res) => {
+  try {
+    let obj = req.user;
+    let username = obj.username;
+    let admin = await Admin.findOne({ username: username });
+    if (!admin) return res.status(401).json({ msg: "Unauthorized" });
+
+    let employeeId = req.params.id;
+    console.log("Attempting to delete ID:", employeeId); 
+    let employee = await Employee.findById(employeeId);
+
+    if (!employee) {
+      return res.status(404).json({ msg: "Employee not found" });
+    }
+
+    await Employee.findByIdAndDelete(employeeId);
+    res.json({ msg: "Employee deleted successfully" });
+  } catch (err) {
+    console.error("Delete Error:", err);
+    return res.status(400).json(err);
+  }
+};
+
+

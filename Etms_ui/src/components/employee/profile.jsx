@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 
 function EmpProfile() {
   const [name, setName] = useState("");
@@ -11,45 +11,44 @@ function EmpProfile() {
   const [password, setPassword] = useState("");
   const [msg, setMsg] = useState("");
   const [file, setFile] = useState(undefined);
-  const[pic,setPic]= useState(undefined);
+  const [pic, setPic] = useState(undefined);
 
   const handeFileChange = (e) => {
-    setFile(e.target.files[0]); 
-    console.log(file)
+    setFile(e.target.files[0]);
+    console.log(file);
   };
 
-  const handlePicChange=(e)=>{
+  const handlePicChange = (e) => {
     setPic(e.target.files[0]);
-    console.log(pic)
-  }
+    console.log(pic);
+  };
 
-  const uploadPIC=async()=>{
+  const uploadPIC = async () => {
     if (!pic) {
-        console.log("Pic not present " + pic);
-        return;
-      }
-      const fData=new FormData();
-      fData.append('file',pic);
-      const header={
-        Authorization: "Bearer " + localStorage.getItem("token"),
+      console.log("Pic not present " + pic);
+      return;
+    }
+    const fData = new FormData();
+    fData.append("file", pic);
+    const header = {
+      Authorization: "Bearer " + localStorage.getItem("token"),
       "Content-Type": "multipart/form-data",
-      };
-      try{
-        const resp = await axios.post(
-            "http://localhost:5004/api/employee/uploadpic",
-            fData,
-            {
-              headers: header,
-            }
-          );
-          toast.success("Profile picture uploaded successfully!");
-          console.log(resp); 
-      }
-      catch(err){
-        toast.error("Failed to upload picture.");
-        console.log(err);
-      }
-  }
+    };
+    try {
+      const resp = await axios.post(
+        "http://localhost:5004/api/employee/uploadpic",
+        fData,
+        {
+          headers: header,
+        }
+      );
+      toast.success("Profile picture uploaded successfully!");
+      console.log(resp);
+    } catch (err) {
+      toast.error("Failed to upload picture.");
+      console.log(err);
+    }
+  };
 
   const uploadCV = async () => {
     if (!file) {
@@ -71,7 +70,7 @@ function EmpProfile() {
         }
       );
       console.log(resp);
-      toast.success("CV uploaded successfully!"); 
+      toast.success("CV uploaded successfully!");
     } catch (err) {
       console.log(err);
       toast.error("Failed to upload file.");
@@ -83,7 +82,7 @@ function EmpProfile() {
       try {
         let token = localStorage.getItem("token");
         let response = await axios.get(
-          "http://localhost:5004/api/employee/emp", // Fetch only the logged-in employee details
+          "http://localhost:5004/api/employee/emp",
           {
             headers: { Authorization: "Bearer " + token },
           }
@@ -95,6 +94,7 @@ function EmpProfile() {
         setSalary(data.salary);
         setJobTitle(data.jobTitle);
         setUsername(data.username);
+        setPassword(data.password);
       } catch (error) {
         console.error("Error fetching employee details", error);
       }
@@ -107,16 +107,16 @@ function EmpProfile() {
     e.preventDefault();
     try {
       console.log("updated");
+      toast.success("Updation successfully!");
     } catch (error) {
       console.log("Error updating profile", error);
+      toast.error("Failed to update");
       setMsg("Error updating profile.");
     }
   };
 
   return (
     <div className="card">
-        
-
       <div className="card-header">Employee Profile</div>
       <div className="card-body">
         {msg && <div className="alert alert-info">{msg}</div>}
@@ -141,15 +141,30 @@ function EmpProfile() {
           </div>
           <div className="col-md-6">
             <label className="form-label">Salary</label>
-            <input type="text" className="form-control" value={salary} disabled />
+            <input
+              type="text"
+              className="form-control"
+              value={salary}
+              disabled
+            />
           </div>
           <div className="col-6">
             <label className="form-label">Job Title</label>
-            <input type="text" className="form-control" value={jobTitle} disabled />
+            <input
+              type="text"
+              className="form-control"
+              value={jobTitle}
+              disabled
+            />
           </div>
           <div className="col-md-6">
             <label className="form-label">Username</label>
-            <input type="text" className="form-control" value={username} disabled />
+            <input
+              type="text"
+              className="form-control"
+              value={username}
+              disabled
+            />
           </div>
           <div className="col-md-6">
             <label className="form-label">Password</label>
@@ -157,14 +172,18 @@ function EmpProfile() {
               type="password"
               className="form-control"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              disabled
             />
           </div>
         </form>
         <hr />
         <div className="col-lg-12">
           <label>Profile Pic</label>
-          <input type="file" className="form-control" onChange={handlePicChange}  />
+          <input
+            type="file"
+            className="form-control"
+            onChange={handlePicChange}
+          />
           <br />
           <button className="btn btn-secondary" onClick={uploadPIC}>
             Upload
@@ -175,13 +194,25 @@ function EmpProfile() {
           <label htmlFor="inputCity" className="form-label">
             Upload updated CV
           </label>
-          <input type="file" className="form-control" onChange={handeFileChange}  />
+          <input
+            type="file"
+            className="form-control"
+            onChange={handeFileChange}
+          />
           <br />
-          <button className="btn btn-secondary" onClick={uploadCV} >Upload</button>
+          <button className="btn btn-secondary" onClick={uploadCV}>
+            Upload
+          </button>
         </div>
         <hr />
         <div className="col-12">
-          <button type="submit" className="btn btn-primary" onClick={handleProfileUpdate}>Save Profile</button>
+          <button
+            type="submit"
+            className="btn btn-primary"
+            onClick={handleProfileUpdate}
+          >
+            Save Profile
+          </button>
         </div>
       </div>
     </div>

@@ -17,7 +17,7 @@ exports.addTask=async (req,res)=>{
     if (!mongoose.Types.ObjectId.isValid(pid)) {
         return res.status(400).json({ msg: "Invalid project ID format." });
     }
-    //validate this pid 
+    
     let project = await Project.findById(pid); 
     if(!project)
         return res.status(400).json({'msg' : 'Invalid project Id given..'})
@@ -41,6 +41,24 @@ exports.getTask=async(req,res)=>{
     }
     res.json(task);
     }catch(err){
-        res.status(400).json({ message: "API error", error });
+        res.status(400).json({ message: "API error"});
     }
 }
+
+exports.archiveTask = async (req, res) => {
+    try {
+        const taskId = req.params.id;
+        let task = await Task.findById(taskId);
+        if (!task) {
+            return res.status(404).json({ msg: "Task not found" });
+        }
+
+        task.status = "archived";
+        await task.save();
+        
+        res.json({ msg: "Task archived successfully", task });
+    } catch (err) {
+        res.status(500).json({ msg: "Error archiving task", error: err });
+    }
+};
+

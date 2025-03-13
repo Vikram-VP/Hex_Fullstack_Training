@@ -8,7 +8,7 @@ function AddTask() {
   const [startDate, setStartDate] = useState("");
   const [edate, setEdate] = useState("");
   const [project, setProject] = useState("");
-  const [projects, setProjects] = useState([]); 
+  const [projects, setProjects] = useState([]);
   const [msg, setMsg] = useState("");
 
   useEffect(() => {
@@ -21,14 +21,14 @@ function AddTask() {
       try {
         const response = await axios.get(url, { headers: header });
         if (Array.isArray(response.data)) {
-          setProjects(response.data); 
+          setProjects(response.data);
         } else {
           console.error("Invalid project data:", response.data);
-          setProjects([]); 
+          setProjects([]);
         }
       } catch (err) {
         console.log("Error fetching projects:", err.message);
-        setProjects([]); 
+        setProjects([]);
       }
     };
 

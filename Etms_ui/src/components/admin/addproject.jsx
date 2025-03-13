@@ -9,29 +9,32 @@ function AddProject() {
   const [client, setClient] = useState("");
   const [techstack, setTechstack] = useState("");
   // eslint-disable-next-line no-unused-vars
-  const [msg,setMsg] = useState('')
+  const [msg, setMsg] = useState("");
 
   const add = async (e) => {
     e.preventDefault();
     console.log({ title, sdesc, edate, client, techstack });
-    let url="http://localhost:5004/api/project/add"
+    let url = "http://localhost:5004/api/project/add";
     let header = {
-        'Authorization' : 'Bearer ' + localStorage.getItem('token')
-    }
-    try{
-        const response= await axios.post(url,{
-            'title':title,
-            'shortDescription':sdesc,
-            'estimatedEndDate':edate,
-            'clientName':client,
-            'techStack':techstack
-        },{headers:header})
-        setMsg("Project Added Successfully")
-        console.log(response)
-    }
-    catch(err){
-        console.log(err.message)
-        setMsg("Error in adding project!")
+      Authorization: "Bearer " + localStorage.getItem("token"),
+    };
+    try {
+      const response = await axios.post(
+        url,
+        {
+          title: title,
+          shortDescription: sdesc,
+          estimatedEndDate: edate,
+          clientName: client,
+          techStack: techstack,
+        },
+        { headers: header }
+      );
+      setMsg("Project Added Successfully");
+      console.log(response);
+    } catch (err) {
+      console.log(err.message);
+      setMsg("Error in adding project!");
     }
   };
 
