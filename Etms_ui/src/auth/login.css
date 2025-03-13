@@ -1,4 +1,4 @@
-/* Background */
+
 .login-container {
     height: 100vh;
     display: flex;
@@ -7,7 +7,7 @@
     background: linear-gradient(to right, #004d99, #001f3f);
 }
 
-/* Card */
+
 .login-card {
     background: #ffffff;
     padding: 30px;
@@ -17,7 +17,7 @@
     text-align: center;
 }
 
-/* Header */
+
 .login-header p {
     font-size: 14px;
     font-weight: normal;
@@ -43,7 +43,7 @@
     color: #333;
 }
 
-/* Form */
+
 .form-group {
     margin-bottom: 15px;
     text-align: left;
@@ -63,7 +63,6 @@
     font-size: 14px;
 }
 
-/* Button */
 .btn-login {
     width: 100%;
     background: #004d99;
@@ -84,7 +83,7 @@
     background: #003366;
 }
 
-/* Alert */
+
 .alert {
     color: red;
     margin-bottom: 10px;

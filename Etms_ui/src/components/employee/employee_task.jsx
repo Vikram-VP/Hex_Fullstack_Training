@@ -31,15 +31,15 @@ function EmployeeTask() {
           const id = task._id;
           console.log(id);
   
-          const putApi = `http://localhost:5004/api/task/archive/${id}`;
-          const headers = {
-              Authorization: `Bearer ${localStorage.getItem("token")}`
+          let headers = {
+              Authorization: "Bearer " + localStorage.getItem("token"),
           };
   
-          await axios.put(putApi, {'status': "archive" }, { headers });
+          const putApi = `http://localhost:5004/api/task/archive/${id}`;
+          let response = await axios.put(putApi, { status: "archived" }, { headers });
   
           toast.success("Archived successfully");
-  
+          console.log(response)
           setTasks(tasks.map(t => t._id === id ? { ...t, status: "archived" } : t));
   
       } catch (error) {
@@ -47,6 +47,7 @@ function EmployeeTask() {
           toast.error("Failed to archive task");
       }
   };
+  
   
 
   
@@ -82,7 +83,7 @@ function EmployeeTask() {
                   &nbsp;
                   <button
                     className="btn btn-warning"
-                    onClick={() => Archive(task._id)}
+                    onClick={() => Archive(task)}
                     disabled={task.status === "archived"}
                   >
                     {task.status === "archived" ? "Archived" : "Archive"}

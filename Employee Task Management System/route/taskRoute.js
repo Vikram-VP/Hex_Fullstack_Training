@@ -7,6 +7,6 @@ const router = express.Router();
 router.post("/add/:pid",auth,addTask)
 router.get("/getall",getAllTasks)
 router.get('/get/:id',getTask)
-router.put('/achive/:id',archiveTask)
+router.put('/archive/:id',archiveTask)
 
 module.exports = router; 

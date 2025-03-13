@@ -52,13 +52,13 @@ exports.archiveTask = async (req, res) => {
         if (!task) {
             return res.status(404).json({ msg: "Task not found" });
         }
-
         task.status = "archived";
         await task.save();
-        
+
         res.json({ msg: "Task archived successfully", task });
     } catch (err) {
-        res.status(500).json({ msg: "Error archiving task", error: err });
+        res.status(400).json({ msg: "Error archiving task"+err.message});
     }
 };
+
 
